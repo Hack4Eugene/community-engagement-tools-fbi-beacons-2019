@@ -14,7 +14,7 @@ if(!$conn){
 }
 
 //What to pull from the sql server and from where
-$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Description, Link, StartDate, EndDate FROM Gene';
+$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Description, Link FROM Gene';//, StartDate, EndDate FROM Gene';
 
 //selecting the database
 mysql_select_db($Database);
@@ -33,7 +33,7 @@ $myObj = null;
 
 //cycle thorugh data and set it to object that is converted to JSON
 while($row = mysql_fetch_array($retrieved, MYSQL_ASSOC)){
-	if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
+	//if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
 		$myObj->type = {$row['EventName']};
 		$myObj->name = {$row['Name']};
 		$myObj->description = {$row['Description']};
@@ -43,7 +43,7 @@ while($row = mysql_fetch_array($retrieved, MYSQL_ASSOC)){
 		$myObj->radius = {$row['Radius']};
 
 		$myJSON .= json_encode($myObj);
-	}
+	//}
 }
 
 //display JSON
