@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>FBI Beacons</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<title>FBI Beacons</title>
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="map"></div>
+	</body>
+	<footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+			var map;
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('map'), {
+					center: {lat: -34.397, lng: 150.644},
+					zoom: 8
+				});
+			}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24J71y174znE9qqKYw0zF35-M_KRfzwg&callback=initMap" async defer></script>
+	</footer>
 </html>
