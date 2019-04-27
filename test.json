@@ -1,12 +1,14 @@
 {
-    "construction": [
+    "data":[
         {
             "name": "Parking Garage",
             "description": "Making a Parking Garage",
             "link": "https://www.w3schools.com/html/html_head.asp",
+            "type": "construction",
             "latitude": 44.051041,
             "longitude": -123.091202,
             "radius": 500,
+            "color": "orange",
             "question": "What is a parking garage?",
             "answer1": "A Parking Garage",
             "answer2": "A Cat",
@@ -16,49 +18,72 @@
             "name": "Skyscraper",
             "description": "Ya.",
             "link": "http://www.bunnybunchboutique.com/store/",
+            "type": "construction",
             "latitude": 44.056107,
             "longitude": -123.104892,
             "radius": 430,
+            "color": "orange",
             "question": "What is a Skyscraper?",
             "answer1": "A Sky Scraper",
             "answer2": "A Kitten",
             "anwswer3": "Magic Johnson"
-        }
-    ],
-    "event": [
+        },
         {
             "name": "Parade",
             "description": "Gay Pride",
             "link": "http://eugene-pride.org/",
+            "type": "event",
             "latitude": 44.051615,
             "longitude": -123.098878,
-            "radius": 2.0
+            "radius": 200,
+            "color": "blue",
+            "question": "How long is the parade?",
+            "answer1": "an hour",
+            "answer2": "three hours",
+            "answer3": "one year"
         },
         {
             "name": "Protest",
             "description": "Anti-Abortion",
             "link": "https://www.justonecookbook.com/green-bean-shiraae/",
+            "type": "event",
             "latitude": 44.04996,
             "longitude": -123.095847,
-            "radius": 3.5
-        }
-    ],
-    "other": [
+            "radius": 350,
+            "color": "blue",
+            "question": "Did you read the information provided?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "what information?"
+        },
         {
             "name": "Escaped Goats",
             "description": "The goats got loose",
             "link": "http://goats.com/",
+            "type": "other",
             "latitude": 44.048862,
             "longitude": -123.098846,
-            "radius": 5.0
+            "radius": 500,
+            "color": "green",
+            "question": "Are goats blue?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "sometimes"
         },
         {
             "name": "City Plumbing",
             "description": "Pipe Burst",
             "link": "http://www.cherrycityplumbing.com/",
+            "type": "other",
             "latitude": 44.050051,
             "longitude": -123.103439,
-            "radius": 1.5
+            "radius": 1000,
+            "color": "green",
+            "question": "Was a goat stuck in the pipe?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "How would a goat get into the pipe?"
+
         }
     ]
 }
