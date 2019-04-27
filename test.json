@@ -1,0 +1,56 @@
+{
+    "construction": [
+        {
+            "name": "CONSTRUCTION1 NAME (STRING)",
+            "description": "CONSTRUCTION1 DESCRIPTION (STRING)",
+            "link": "CONSTRUCTION1 LINK (STRING)",
+            "latitude": "CONSTRUCTION1 LATITUDE (FLOAT)",
+            "longitude": "CONSTRUCTION1 LONGITUDE (FLOAT)",
+            "radius": "CONSTRUCTION1 RADIUS (FLOAT)"
+        },
+        {
+            "name": "CONSTRUCTION2 NAME",
+            "description": "CONSTRUCTION2 DESCRIPTION",
+            "link": "CONSTRUCTION2 LINK",
+            "latitude": "CONSTRUCTION2 LATITUDE",
+            "longitude": "CONSTUCTION2 LONGITUDE",
+            "radius": "CONSTRUCTION2 RADIUS"
+        }
+        ],
+        "event": [
+        {
+            "name": "EVENT1 NAME",
+            "description": "EVENT1 DESCRIPTION",
+            "link": "EVENT1 LINK",
+            "latitude": "EVENT1 LATITUDE",
+            "longitude": "EVENT1 LONGITUDE",
+            "radius": "EVENT1 RADIUS"
+        },
+        {
+            "name": "EVENT2 NAME",
+            "description": "EVENT2 DESCRIPTION",
+            "link": "EVENT2 LINK",
+            "latitude": "EVENT2 LATITUDE",
+            "longitude": "EVENT2 LONGITUDE",
+            "radius": "EVENT2 RADIUS"
+        }
+        ],
+        "other": [
+        {
+            "name": "OTHER1 NAME",
+            "description": "OTHER1 DESCRIPTION",
+            "link": "OTHER1 LINK",
+            "latitude": "OTHER1 LATITUDE",
+            "longitude": "OTHER1 LONGITUDE",
+            "radius": "OTHER1 RADIUS"
+        },
+        {
+            "name": "OTHER2 NAME",
+            "description": "OTHER2 DESCRIPTION",
+            "link": "OTHER2 LINK",
+            "latitude": "OTHER2 LATITUDE",
+            "longitude": "OTHER2 LONGITUDE",
+            "radius": "OTHER2 RADIUS"
+        }
+    ]
+}
