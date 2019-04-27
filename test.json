@@ -30,7 +30,11 @@
             "enddate": "ED",
             "latitude": 44.051615,
             "longitude": -123.098878,
-            "radius": 2.0
+            "radius": 200,
+            "question": "How long is the parade?",
+            "answer1": "an hour",
+            "answer2": "three hours",
+            "answer3": "one year"
         },
         {
             "name": "Protest",
@@ -40,7 +44,11 @@
             "enddate": "ED",
             "latitude": 44.04996,
             "longitude": -123.095847,
-            "radius": 3.5
+            "radius": 350,
+            "question": "Did you read the information provided?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "what information?"
         }
         ],
         "other": [
@@ -52,7 +60,11 @@
             "enddate": "ED",
             "latitude": 44.048862,
             "longitude": -123.098846,
-            "radius": 5.0
+            "radius": 500,
+            "question": "Are goats blue?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "sometimes"
         },
         {
             "name": "City Plumbing",
@@ -62,7 +74,12 @@
             "enddate": "ED",
             "latitude": 44.050051,
             "longitude": -123.103439,
-            "radius": 1.5
+            "radius": 1000,
+            "question": "Was a goat stuck in the pipe?",
+            "answer1": "yes",
+            "answer2": "no",
+            "answer3": "How would a goat get into the pipe?"
+
         }
     ]
 }
