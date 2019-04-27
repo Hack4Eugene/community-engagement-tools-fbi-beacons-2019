@@ -4,30 +4,32 @@
             "name": "Parking Garage",
             "description": "Making a Parking Garage",
             "link": "https://www.w3schools.com/html/html_head.asp",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.051041,
             "longitude": -123.091202,
-            "radius": 1.5
+            "radius": 500,
+            "question": "What is a parking garage?",
+            "answer1": "A Parking Garage",
+            "answer2": "A Cat",
+            "anwswer3": "Phil Swift"
         },
         {
             "name": "Skyscraper",
             "description": "Ya.",
             "link": "http://www.bunnybunchboutique.com/store/",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.056107,
             "longitude": -123.104892,
-            "radius": 1.2
+            "radius": 430,
+            "question": "What is a Skyscraper?",
+            "answer1": "A Sky Scraper",
+            "answer2": "A Kitten",
+            "anwswer3": "Magic Johnson"
         }
-        ],
-        "event": [
+    ],
+    "event": [
         {
             "name": "Parade",
             "description": "Gay Pride",
             "link": "http://eugene-pride.org/",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.051615,
             "longitude": -123.098878,
             "radius": 2.0
@@ -36,20 +38,16 @@
             "name": "Protest",
             "description": "Anti-Abortion",
             "link": "https://www.justonecookbook.com/green-bean-shiraae/",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.04996,
             "longitude": -123.095847,
             "radius": 3.5
         }
-        ],
-        "other": [
+    ],
+    "other": [
         {
             "name": "Escaped Goats",
             "description": "The goats got loose",
             "link": "http://goats.com/",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.048862,
             "longitude": -123.098846,
             "radius": 5.0
@@ -58,8 +56,6 @@
             "name": "City Plumbing",
             "description": "Pipe Burst",
             "link": "http://www.cherrycityplumbing.com/",
-            "startdate": "SD",
-            "enddate": "ED",
             "latitude": 44.050051,
             "longitude": -123.103439,
             "radius": 1.5
