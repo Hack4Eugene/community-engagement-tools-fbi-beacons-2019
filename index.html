@@ -41,6 +41,12 @@
 				objects["infoWindow"].open(map);
 				objects["marker"].setVisible(false);
 				objects["status"] = true;
+
+				for(let index in objectList){
+					if(objectList[index] != objects){
+						hideInfoObjects(objectList[index]);
+					}
+				}
 			}
 
 			// Shows the Marker
@@ -156,26 +162,16 @@
 				
 				$.getJSON("test.json", function(data){
 					$.each(data["data"], function(index, value){
-						// console.log(value)
 						let object = createInfoObjects(value);
+						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+							hideInfoObjects(object);
+						});
+						google.maps.event.addListener(object["marker"], "click", function(){
+							showInfoObjects(object);
+						});
 						objectList.push(object);
 					});
 				});
-
-				for (let object in objectList){
-					google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
-							hideInfoObjects(object);
-					});
-					google.maps.event.addListener(object["marker"], "click", function(){
-						showInfoObjects(object);
-						// Close any other objects' open infowindows
-						for (let obj in objectList){
-							if (obj["status"] == true){
-								hideInfoObjects(obj);
-							}
-						}
-					});
-				}
 				
 			}
 
