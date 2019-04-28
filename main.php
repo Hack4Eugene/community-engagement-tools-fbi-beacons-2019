@@ -33,7 +33,7 @@ $myObj = null;
 $data = array();
 while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 	//Check that project is active
-	if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {//may need to remove curly brackets around $row
+	if((date("Y//m/d") > $row['StartDate']) && date("Y/m/d") < $row['EndDate']) {
 		$myObj->name = $row['EventName'];
 		$myObj->description = $row['Description'];
 		$myObj->link = $row['Link'];
