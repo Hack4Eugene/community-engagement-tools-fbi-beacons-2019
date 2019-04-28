@@ -1,63 +1,61 @@
 <?php
 
 //connection variables
-$Server = "54.214.135.100";
-$User = "root";
-$Pass ="";
+$Server = "localhost:3306";
+$User = "debian-sys-maint";
+$Pass ="uVhufmCdwN29zZsq";
 $Database = "Eugene_Geo_App";
-
-$conn = mysqli_connect($Server);
+$conn =  mysqli_connect($Server, $User, $Pass, $Database);
 
 //check connection, if it isnt connected show error
+
 if(!$conn){
-	die('Could not connect: ' . mysql_error());
+       echo('Could not connect: ' . mysqli_error());
 }
 
 //What to pull from the sql server and from where
 $pull = 'SELECT Username FROM Admins';
 $pull2 = 'SELECT Password FROM Admins';
 
-//selecting the database
-mysql_select_db($Database);
-
 //setting the pulled data to a variable
-$retrieved = mysql_query($pull, $conn);
-$retrieved2 = mysql_query($pull2, $conn);
+$retrieved = mysql_query($conn, $pull);
+$retrieved2 = mysql_query($conn, $pull2);
 
 //check data, if it didnt get any show error
-if(!$retrieved || !$retrieved2){
-	die('Could not get data: ' . mysql_error());
+if(!$retrieved){
+       echo ('Could not get data: ' . mysqli_error());
 }
 
+//Login variables
 $user = null;
 $pass = null;
 
 //set data to array
-$user = mysql_fetch_array($retrieved, MYSQL_ASSOC);
-$pass = mysql_fetch_array($retrieved2, MYSQL_ASSOC);
+$user = mysqli_fetch_array($retrieved, MYSQL_BOTH);
+$pass = mysqli_fetch_array($retrieved2, MYSQL_BOTH);
 
-if (isset($_POST['login']) && !empty($_POST['username']) 
-               && !empty($_POST['password'])) {
-				
-               if (in_array($_POST['username'], $user) && 
-                  in_array($_POST['password'], $pass)) {
-			if(array_search($_POST['username'], $user) == array_search($_POST['password'], $pass))
-                  		$myJSON = json_encode(true);
-                  
-                  		echo 'You have entered a valid username and password';
-			} else {
-				$myJSON = json_encode(false);
-
-                  		echo 'You have entered a invalid username and password';
-			}
-			echo $myJSON;
+//get the username & password user entered when they hit submit
+if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+	//check for username & password in database
+	if (in_array($_POST['username'], $user) && in_array($_POST['password'], $pass)) {
+		//check if the username and password are paired
+		if(array_search($_POST['username'], $user) == array_search($_POST['password'], $pass)) {
+			//send true
+			$myJSON = json_encode(true);
+			echo 'You have entered a valid username and password';
 		} else {
-		  $myJSON = json_encode(false);
-
-                  echo 'You have entered a invalid username and password';
-		  echo $myJSON;
+			//set result to false
+			$myJSON = json_encode(false);
+			echo 'You have entered a invalid username and password';
 		}
-            }
+	} else {
+		//set result to false
+		$myJSON = json_encode(false);
+		echo 'You have entered a invalid username and password';
+	}
+	//Send result
+	echo $myJSON;
+}
 
 //Close the sql connection to the server
 mysql_close($conn);
