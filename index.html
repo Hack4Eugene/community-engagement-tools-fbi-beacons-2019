@@ -32,6 +32,32 @@
 			let purpleClicked = false;
 			let orangeClicked = false;
 			
+			// Shows the Circle and Info Window
+			// Hides the Marker
+			// For indiviudal marker
+			function showInfoObjects(objects){
+				objects["circle"].setOptions({fillOpacity: FILL_OPACITY, strokeOpacity: STROKE_OPACITY});
+				objects["infoWindow"].open(map)
+				objects["marker"].setVisible(false)
+			}
+
+			// Shows the Marker
+			// Hides the Circle and Info Window
+			// For indiviudal marker
+			function hideInfoObjects(objects){
+				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
+				objects["infoWindow"].close()
+				objects["marker"].setVisible(true)
+			}
+
+			// Hides the Marker, Circle, and Info Window
+			// For indiviudal marker
+			function hideAllObjects(objects){
+				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
+				objects["infoWindow"].close()
+				objects["marker"].setVisible(false)
+			}
+
 			function CenterControl(controlDiv, map, text, title, color, colorClicked) {
 
 		        // Set CSS for the control border.
@@ -61,14 +87,26 @@
 
 		        // Setup the click event listeners: change background on click.
 		        controlUI.addEventListener('click', function() {
+		        	
 		        	if (colorClicked == true){
 		        		controlUI.style.backgroundColor = '#fff';
 		        		colorClicked = false;
+		        		// Hide markers of the chosen color.
+		        		for (i=0; i < objectList.length; i++){
+			        		if (objectList[i]["color"] == color){
+			        			hideAllObjects(objectList);
+			        		}
+		        		}
 		        	} else {
 		        		controlUI.style.backgroundColor = 'rgb(211,211,211)';
 		        		colorClicked = true;
+		        		// Show markers of the chosen color.
+		        		for (i=0; i < objectList.length; i++){
+			        		if (objectList[i]["color"] == color){
+			        			hideInfoObjects(objectList);
+			        		}
+		        		}
 		        	}
-
 		        });
 			}
 
@@ -221,28 +259,7 @@
 				return objects
 			}
 
-			// Shows the Circle and Info Window
-			// Hides the Marker
-			function showInfoObjects(objects){
-				objects["circle"].setOptions({fillOpacity: FILL_OPACITY, strokeOpacity: STROKE_OPACITY});
-				objects["infoWindow"].open(map)
-				objects["marker"].setVisible(false)
-			}
-
-			// Shows the Marker
-			// Hides the Circle and Info Window
-			function hideInfoObjects(objects){
-				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
-				objects["infoWindow"].close()
-				objects["marker"].setVisible(true)
-			}
-
-			// Hides the Marker, Circle, and Info Window
-			function hideAllObjects(objects){
-				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
-				objects["infoWindow"].close()
-				objects["marker"].setVisible(false)
-			}
+			
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24J71y174znE9qqKYw0zF35-M_KRfzwg&callback=initMap" async defer></script>
 	</footer>
