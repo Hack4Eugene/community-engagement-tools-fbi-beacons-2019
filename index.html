@@ -160,32 +160,15 @@
 				// 	getLocation()
 				// }, 10000)
 				
-				// $.get("main.php", function(json){
-				// 	let data = JSON.parse(json);
-				// 	for(let index in data){
-				// 		let currdata = data[index];
-				// 		currdata["radius"] = Number(currdata["radius"]);
-				// 		currdata["latitude"] = Number(currdata["latitude"]);
-				// 		currdata["longitude"] = Number(currdata["longitude"]);
-				// 		currdata["color"] = currdata["color"].toLowerCase();
-				// 		let object = createInfoObjects(currdata);
-				// 		google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
-				// 			hideInfoObjects(object);
-				// 		});
-				// 		google.maps.event.addListener(object["marker"], "click", function(){
-				// 			showInfoObjects(object);
-				// 		});
-				// 		objectList.push(object);
-				// 	}
-
-				// 	$(".answer1").click(function(){
-
-				// 	})
-				// });
-				
-				$.getJSON("test.json", function(data){
-					$.each(data["data"], function(index, value){
-						let object = createInfoObjects(value);
+				$.get("main.php", function(json){
+					let data = JSON.parse(json);
+					for(let index in data){
+						let currdata = data[index];
+						currdata["radius"] = Number(currdata["radius"]);
+						currdata["latitude"] = Number(currdata["latitude"]);
+						currdata["longitude"] = Number(currdata["longitude"]);
+						currdata["color"] = currdata["color"].toLowerCase();
+						let object = createInfoObjects(currdata);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
 						});
@@ -193,8 +176,22 @@
 							showInfoObjects(object);
 						});
 						objectList.push(object);
-					});
+					}
+
 				});
+				
+				// $.getJSON("test.json", function(data){
+				// 	$.each(data["data"], function(index, value){
+				// 		let object = createInfoObjects(value);
+				// 		google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+				// 			hideInfoObjects(object);
+				// 		});
+				// 		google.maps.event.addListener(object["marker"], "click", function(){
+				// 			showInfoObjects(object);
+				// 		});
+				// 		objectList.push(object);
+				// 	});
+				// });
 				
 			}
 
