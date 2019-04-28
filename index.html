@@ -155,12 +155,12 @@
 				// HTML5 geolocation.
 				//getLocation()
 				
-				setInterval(function(){
-					getLocation()
-				}, 10000)
+				// setInterval(function(){
+				// 	getLocation()
+				// }, 10000)
 				
 				$.get("main.php", function(json){
-					console.log(json);
+					console.log(JSON.parse(json));
 				})
 				
 				$.getJSON("test.json", function(data){
