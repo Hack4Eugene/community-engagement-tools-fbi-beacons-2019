@@ -167,7 +167,7 @@
 						currdata["latitude"] = Number(currdata["latitude"]);
 						currdata["longitude"] = Number(currdata["longitude"]);
 						currdata["color"] = currdata["color"].toLowerCase();
-						let object = createInfoObjects(data[index]);
+						let object = createInfoObjects(currdata);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
 						});
