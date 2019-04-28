@@ -19,6 +19,7 @@
 			let STROKE_WEIGHT = 2;
 			let FILL_OPACITY = 0.35;
 
+			let currSelectedObject = null;
 			let userPosition;
 			let map;
 			let objectList = [];
@@ -159,29 +160,15 @@
 				// 	getLocation()
 				// }, 10000)
 				
-				$.get("main.php", function(json){
-					let data = JSON.parse(json);
-					for(let index in data){
-						let currdata = data[index];
-						currdata["radius"] = Number(currdata["radius"]);
-						currdata["latitude"] = Number(currdata["latitude"]);
-						currdata["longitude"] = Number(currdata["longitude"]);
-						currdata["color"] = currdata["color"].toLowerCase();
-						console.log(currdata);
-						let object = createInfoObjects(currdata);
-						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
-							hideInfoObjects(object);
-						});
-						google.maps.event.addListener(object["marker"], "click", function(){
-							showInfoObjects(object);
-						});
-						objectList.push(object);
-					}
-				});
-				
-				// $.getJSON("test.json", function(data){
-				// 	$.each(data["data"], function(index, value){
-				// 		let object = createInfoObjects(value);
+				// $.get("main.php", function(json){
+				// 	let data = JSON.parse(json);
+				// 	for(let index in data){
+				// 		let currdata = data[index];
+				// 		currdata["radius"] = Number(currdata["radius"]);
+				// 		currdata["latitude"] = Number(currdata["latitude"]);
+				// 		currdata["longitude"] = Number(currdata["longitude"]);
+				// 		currdata["color"] = currdata["color"].toLowerCase();
+				// 		let object = createInfoObjects(currdata);
 				// 		google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 				// 			hideInfoObjects(object);
 				// 		});
@@ -189,8 +176,25 @@
 				// 			showInfoObjects(object);
 				// 		});
 				// 		objectList.push(object);
-				// 	});
+				// 	}
+
+				// 	$(".answer1").click(function(){
+
+				// 	})
 				// });
+				
+				$.getJSON("test.json", function(data){
+					$.each(data["data"], function(index, value){
+						let object = createInfoObjects(value);
+						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+							hideInfoObjects(object);
+						});
+						google.maps.event.addListener(object["marker"], "click", function(){
+							showInfoObjects(object);
+						});
+						objectList.push(object);
+					});
+				});
 				
 			}
 
@@ -237,9 +241,10 @@
 					data["type"] + ": " + data["description"] + 
 					"<div>" + 
 						"<strong><p>" + data["question"] + "</p></strong>" + 
-						"<button class='answer1'>" + data["answer1"] + "</button><br>" + 
+						"<button class='answer1' onclick='answerSelected'>" + data["answer1"] + "</button><br>" + 
 						"<button class='answer2'>" + data["answer2"] + "</button><br>" + 
 						"<button class='answer3'>" + data["answer3"] + "</button>" + 
+						"<p class='email'>nobody@gmail.com</p>"  +
 					"</div>"
 				);
 
@@ -275,6 +280,7 @@
 
 				return objects
 			}
+
 
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24J71y174znE9qqKYw0zF35-M_KRfzwg&callback=initMap" async defer></script>
