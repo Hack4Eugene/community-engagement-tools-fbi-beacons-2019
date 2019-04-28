@@ -40,6 +40,7 @@
 				objects["circle"].setOptions({fillOpacity: FILL_OPACITY, strokeOpacity: STROKE_OPACITY});
 				objects["infoWindow"].open(map);
 				objects["marker"].setVisible(false);
+				objects["status"] = true;
 			}
 
 			// Shows the Marker
@@ -49,6 +50,7 @@
 				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
 				objects["infoWindow"].close();
 				objects["marker"].setVisible(true);
+				objects["status"] = false;
 			}
 
 			// Hides the Marker, Circle, and Info Window
@@ -57,6 +59,7 @@
 				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
 				objects["infoWindow"].close();
 				objects["marker"].setVisible(false);
+				objects["status"] = false;
 			}
 
 			function CenterControl(controlDiv, map, text, title, color, colorClicked) {
@@ -144,26 +147,35 @@
         		map.controls[google.maps.ControlPosition.RIGHT].push(OControlDiv);
 				
 				// HTML5 geolocation.
-				getLocation()
+				//getLocation()
 				
 				setInterval(function(){
 					getLocation()
 				}, 10000)
-
+	
 				
 				$.getJSON("test.json", function(data){
 					$.each(data["data"], function(index, value){
 						// console.log(value)
 						let object = createInfoObjects(value);
-						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
-							hideInfoObjects(object);
-						});
-						google.maps.event.addListener(object["marker"], "click", function(){
-							showInfoObjects(object);
-						});
 						objectList.push(object);
 					});
 				});
+
+				for (let object in objectList){
+					google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+							hideInfoObjects(object);
+					});
+					google.maps.event.addListener(object["marker"], "click", function(){
+						showInfoObjects(object);
+						// Close any other objects' open infowindows
+						for (let obj in objectList){
+							if (obj["status"] == true){
+								hideInfoObjects(obj);
+							}
+						}
+					});
+				}
 				
 			}
 
