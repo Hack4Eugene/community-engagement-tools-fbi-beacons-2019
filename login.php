@@ -8,7 +8,6 @@ $Database = "Eugene_Geo_App";
 $conn =  mysqli_connect($Server, $User, $Pass, $Database);
 
 //check connection, if it isnt connected show error
-
 if(!$conn){
        echo('Could not connect: ' . mysqli_error());
 }
@@ -18,8 +17,8 @@ $pull = 'SELECT Username FROM Admins';
 $pull2 = 'SELECT Password FROM Admins';
 
 //setting the pulled data to a variable
-$retrieved = mysql_query($conn, $pull);
-$retrieved2 = mysql_query($conn, $pull2);
+$retrieved = mysqli_query($conn, $pull);
+$retrieved2 = mysqli_query($conn, $pull2);
 
 //check data, if it didnt get any show error
 if(!$retrieved){
@@ -58,6 +57,6 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 }
 
 //Close the sql connection to the server
-mysql_close($conn);
+mysqli_close($conn);
 
 ?>

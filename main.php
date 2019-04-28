@@ -8,7 +8,6 @@ $Database = "Eugene_Geo_App";
 $conn =  mysqli_connect($Server, $User, $Pass, $Database);
 
 //check connection, if it isnt connected show error
-
 if(!$conn){
        echo('Could not connect: ' . mysqli_error());
 }
@@ -34,6 +33,7 @@ $data = array();
 while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 	//Check that project is active
 	if((date("Y//m/d") > $row['StartDate']) && date("Y/m/d") < $row['EndDate']) {
+		//create object from sql data to be json encoded
 		$myObj->name = $row['EventName'];
 		$myObj->description = $row['Description'];
 		$myObj->link = $row['Link'];
