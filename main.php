@@ -47,6 +47,7 @@ while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 		$myObj->answer2 = $row['AnswerTwo'];
 		$myObj->answer3 = $row['AnswerThree'];
 		array_push($data, $myObj);
+		$myObj = null;
 	}
 }
 
