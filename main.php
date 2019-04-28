@@ -40,7 +40,6 @@ $data = array();
 while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 
 //if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
-
 	$myObj->name = $row['Name'];
 	$myObj->description = $row['Description'];
 	$myObj->link = $row['Link'];
