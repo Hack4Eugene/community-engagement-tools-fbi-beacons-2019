@@ -30,8 +30,8 @@ $user = null;
 $pass = null;
 
 //set data to array
-$user = mysqli_fetch_array($retrieved, MYSQL_BOTH);
-$pass = mysqli_fetch_array($retrieved2, MYSQL_BOTH);
+private $user = mysqli_fetch_array($retrieved, MYSQL_BOTH);
+private $pass = mysqli_fetch_array($retrieved2, MYSQL_BOTH);
 
 //get the username & password user entered when they hit submit
 if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
