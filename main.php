@@ -15,10 +15,9 @@ if(!$conn){
 
 
 //What to pull from the sql server and from where
-$pull = 'SELECT EventID, EventName, Description, Link, StartDate, EndDate FROM Location_Data'; //$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Desc$
+$pull = 'SELECT Name, EventName, Description, Link, Latitude, Longitude, Radius, Color, Question, Answer1, Answer2, Answer3, StartDate, EndDate FROM Location_Data'; //$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Desc$
 
 //selecting the database
-
 //mysqli_select_db($Database);
 
 //setting the pulled data to a variable
