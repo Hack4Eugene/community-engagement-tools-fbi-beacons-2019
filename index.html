@@ -160,12 +160,9 @@
 				// }, 10000)
 				
 				$.get("main.php", function(json){
-					console.log(JSON.parse(json));
-				})
-				
-				$.getJSON("test.json", function(data){
-					$.each(data["data"], function(index, value){
-						let object = createInfoObjects(value);
+					let data = JSON.parse(json);
+					for(let index in data):
+						let object = createInfoObjects(data[index]);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
 						});
@@ -173,8 +170,20 @@
 							showInfoObjects(object);
 						});
 						objectList.push(object);
-					});
 				});
+				
+				// $.getJSON("test.json", function(data){
+				// 	$.each(data["data"], function(index, value){
+				// 		let object = createInfoObjects(value);
+				// 		google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+				// 			hideInfoObjects(object);
+				// 		});
+				// 		google.maps.event.addListener(object["marker"], "click", function(){
+				// 			showInfoObjects(object);
+				// 		});
+				// 		objectList.push(object);
+				// 	});
+				// });
 				
 			}
 
