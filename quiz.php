@@ -1,10 +1,10 @@
 <?php
 
 //connection variables
-$Server = "127.0.0.1";
-$User = "";
+$Server = "54.214.135.100";
+$User = "root";
 $Pass ="";
-$Database = "Quiz";
+$Database = "Eugene_Geo_App";
 
 $conn = mysqli_connect($Server);
 
