@@ -158,7 +158,10 @@
 				setInterval(function(){
 					getLocation()
 				}, 10000)
-	
+				
+				$.get("main.php", function(json){
+					console.log(json);
+				})
 				
 				$.getJSON("test.json", function(data){
 					$.each(data["data"], function(index, value){
@@ -197,7 +200,6 @@
 				}
 			}
 
-
 			function handleLocationError(browserHasGeolocation) {
 				if(browserHasGeolocation){
 					console.log("YES GEO LOCATION SUPPORT");
@@ -219,12 +221,11 @@
 					data["type"] + ": " + data["description"] + 
 					"<div>" + 
 						"<strong><p>" + data["question"] + "</p></strong>" + 
-						"<button>" + data["answer1"] + "</button><br>" + 
-						"<button>" + data["answer2"] + "</button><br>" + 
-						"<button>" + data["answer3"] + "</button>" + 
+						"<button class='answer1'>" + data["answer1"] + "</button><br>" + 
+						"<button class='answer2'>" + data["answer2"] + "</button><br>" + 
+						"<button class='answer3'>" + data["answer3"] + "</button>" + 
 					"</div>"
 				);
-				// infoWindow.open(map);
 
 				// Create ring
 				let circle = new google.maps.Circle({
@@ -252,13 +253,13 @@
 					"circle": circle,
 					"marker": marker,
 					"color": data["color"],
-					"status": false
+					"status": false,
+					"answer": data["answer1"]
 				}
 
 				return objects
 			}
 
-			
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24J71y174znE9qqKYw0zF35-M_KRfzwg&callback=initMap" async defer></script>
 	</footer>
