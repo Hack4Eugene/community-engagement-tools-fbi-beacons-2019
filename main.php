@@ -1,10 +1,10 @@
 <?php
 
 //connection variables
-$Server = "127.0.0.1";
-$User = "";
+$Server = "54.214.135.100";
+$User = "root";
 $Pass ="";
-$Database = "Gene";
+$Database = "Eugene_Geo_App";
 
 $conn = mysqli_connect($Server);
 
@@ -14,7 +14,7 @@ if(!$conn){
 }
 
 //What to pull from the sql server and from where
-$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Description, Link FROM Gene';//, StartDate, EndDate FROM Gene';
+$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Description, Link FROM Location_Data';//, StartDate, EndDate FROM Location_Data';
 
 //selecting the database
 mysql_select_db($Database);
