@@ -1,55 +1,67 @@
 <?php
 
 //connection variables
-$Server = "54.214.135.100";
-$User = "root";
-$Pass ="";
+$Server = "localhost:3306";
+$User = "debian-sys-maint";
+$Pass ="uVhufmCdwN29zZsq";
 $Database = "Eugene_Geo_App";
-
-$conn = mysqli_connect($Server);
+$conn =  mysqli_connect($Server, $User, $Pass, $Database);
 
 //check connection, if it isnt connected show error
+
 if(!$conn){
-	die('Could not connect: ' . mysql_error());
+       echo('Could not connect: ' . mysqli_error());
 }
+
 
 //What to pull from the sql server and from where
-$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Description, Link FROM Location_Data';//, StartDate, EndDate FROM Location_Data';
+$pull = 'SELECT EventID, EventName, Description, Link, StartDate, EndDate FROM Location_Data'; //$pull = 'SELECT Latitude, Longitude, Radius, EventName, Name, Desc$
 
 //selecting the database
-mysql_select_db($Database);
+
+//mysqli_select_db($Database);
 
 //setting the pulled data to a variable
-$retrieved = mysql_query($pull, $conn);
+
+$retrieved = mysqli_query($conn,$pull);
 
 //check data, if it didnt get any show error
-if(!$retrieved){
-	die('Could not get data: ' . mysql_error());
-}
 
+if(!$retrieved){
+       echo ('Could not get data: ' . mysqli_error());
+}
 //JSON variables
+
 $myJSON = null;
 $myObj = null;
 
 //cycle thorugh data and set it to object that is converted to JSON
-while($row = mysql_fetch_array($retrieved, MYSQL_ASSOC)){
-	//if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
-		$myObj->type = {$row['EventName']};
-		$myObj->name = {$row['Name']};
-		$myObj->description = {$row['Description']};
-		$myObj->link = {$row['Link']};
-		$myObj->latitude = {$row['Latitude']};
-		$myObj->longitude = {$row['Longitude']};
-		$myObj->radius = {$row['Radius']};
+$data = array();
+while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 
-		$myJSON .= json_encode($myObj);
-	//}
+//if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
+
+	$myObj->name = $row['Name'];
+	$myObj->description = $row['Description'];
+	$myObj->link = $row['Link'];
+	$myObj->type = $row['EventName'];
+	$myObj->latitude = $row['Latitude'];
+	$myObj->longitude = $row['Longitude'];
+	$myObj->radius = $row['Radius'];
+	$myObj->color = $row['Color'];
+	$myObj->question = $row['Question'];
+	$myObj->answer1 = $row['Answer1'];
+	$myObj->answer2 = $row['Answer2'];
+	$myObj->answer3 = $row['Answer3'];
+	array_push($data, $myObj);
+       //}
 }
 
 //display JSON
-echo $myJSON;
+echo json_encode($data);
 
 //Close the sql connection to the server
-mysql_close($conn);
+
+mysqli_close($conn);
 
 ?>
