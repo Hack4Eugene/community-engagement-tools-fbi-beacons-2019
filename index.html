@@ -20,6 +20,7 @@
 			var FILL_OPACITY = 0.35
 
 			var map;
+			let objectMap = {}
 
 			// Initialization Functions
 	
@@ -120,33 +121,42 @@
 				  // Browser doesn't support Geolocation
 				  handleLocationError(false);
 				}
+				
+				$.getJSON("test.json", function(data){
+					$.each(data["data"], function(index, value){
+						// console.log(value)
+						objectMap[index] = createInfoObjects(value);
+						google.maps.event.addListener(objectMap[index]["infoWindow"], "closeclick", function(){
+							hideInfoObjects(objectMap[index]);
+						});
+						google.maps.event.addListener(objectMap[index]["marker"], "click", function(){
+							showInfoObjects(objectMap[index]);
+						});
+					});
+				});
 
-				// $.getJSON("test.json", function(data){
-				// 	console.log(data);
+				// data = {
+				// 	"name": "Parking Garage",
+				// 	"type": "CONSTRUCTION",
+				// 	"description": "Making a Parking Garage",
+				// 	"link": "https://www.google.com",
+				// 	"latitude": 44.051041,
+				// 	"longitude": -123.091202,
+				// 	"radius": 500,
+				// 	"color": "purple",
+				// 	"question": "What is the question?",
+				// 	"answer1": "Answer 1",
+				// 	"answer2": "Answer 2",
+				// 	"answer3": "Answer 3"
+				// }
+
+				// objects = createInfoObjects(data);
+				// google.maps.event.addListener(objects["infoWindow"], "closeclick", function(){
+				// 	hideInfoObjects(objects);
 				// });
-
-				data = {
-					"name": "Parking Garage",
-					"type": "CONSTRUCTION",
-					"description": "Making a Parking Garage",
-					"link": "https://www.google.com",
-					"latitude": 44.051041,
-					"longitude": -123.091202,
-					"radius": 500,
-					"color": "purple",
-					"question": "What is the question?",
-					"answer1": "Answer 1",
-					"answer2": "Answer 2",
-					"answer3": "Answer 3"
-				}
-
-				objects = createInfoObjects(data);
-				google.maps.event.addListener(objects["infoWindow"], "closeclick", function(){
-					hideInfoObjects(objects);
-				});
-				google.maps.event.addListener(objects["marker"], "click", function(){
-					showInfoObjects(objects);
-				});
+				// google.maps.event.addListener(objects["marker"], "click", function(){
+				// 	showInfoObjects(objects);
+				// });
 				
 			}
 
@@ -159,7 +169,7 @@
 				}
 			}
 
-			function createInfoObjects(name, type, description, link, latitude, longitude, radius, color, question, a1, a2, a3){
+			function createInfoObjects(data){
 				// Create Infowindow
 				let pos = {
 					lat: data["latitude"],
@@ -200,7 +210,7 @@
 					}
 				});
 
-				objects = {
+				let objects = {
 					"infoWindow": infoWindow,
 					"circle": circle,
 					"marker": marker,
@@ -210,16 +220,27 @@
 				return objects
 			}
 
+			// Shows the Circle and Info Window
+			// Hides the Marker
 			function showInfoObjects(objects){
 				objects["circle"].setOptions({fillOpacity: FILL_OPACITY, strokeOpacity: STROKE_OPACITY});
 				objects["infoWindow"].open(map)
 				objects["marker"].setVisible(false)
 			}
 
+			// Shows the Marker
+			// Hides the Circle and Info Window
 			function hideInfoObjects(objects){
 				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
 				objects["infoWindow"].close()
 				objects["marker"].setVisible(true)
+			}
+
+			// Hides the Marker, Circle, and Info Window
+			function hideAllObjects(objects){
+				objects["circle"].setOptions({fillOpacity: 0, strokeOpacity: 0});
+				objects["infoWindow"].close()
+				objects["marker"].setVisible(false)
 			}
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24J71y174znE9qqKYw0zF35-M_KRfzwg&callback=initMap" async defer></script>
