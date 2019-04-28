@@ -20,7 +20,7 @@
 			var FILL_OPACITY = 0.35
 
 			var map;
-			let objectMap = {}
+			let objectList = []
 
 			// Initialization Functions
 	
@@ -125,13 +125,14 @@
 				$.getJSON("test.json", function(data){
 					$.each(data["data"], function(index, value){
 						// console.log(value)
-						objectMap[index] = createInfoObjects(value);
-						google.maps.event.addListener(objectMap[index]["infoWindow"], "closeclick", function(){
-							hideInfoObjects(objectMap[index]);
+						let object = createInfoObjects(value);
+						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
+							hideInfoObjects(object);
 						});
-						google.maps.event.addListener(objectMap[index]["marker"], "click", function(){
-							showInfoObjects(objectMap[index]);
+						google.maps.event.addListener(object["marker"], "click", function(){
+							showInfoObjects(object);
 						});
+						objectList.push(object);
 					});
 				});
 
