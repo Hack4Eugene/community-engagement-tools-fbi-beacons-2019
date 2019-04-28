@@ -15,7 +15,7 @@ if(!$conn){
 
 
 //What to pull from the sql server and from where
-$pull = 'SELECT Name, EventName, Description, Link, Latitude, Longitude, Radius, Color, Question, Answer1, Answer2, Answer3, StartDate, EndDate FROM Location_Data';
+$pull = 'SELECT EventName, Description, Link, EventType, Latitude, Longitude, EventRadius, Color, Question, AnswerOne, AnswerTwo, AnswerThree, StartDate, EndDate FROM Location_Data';
 
 //setting the pulled data to a variable
 $retrieved = mysqli_query($conn,$pull);
@@ -33,19 +33,19 @@ $myObj = null;
 $data = array();
 while($row = mysqli_fetch_array($retrieved, MYSQLI_BOTH)){
 	//Check that project is active
-	if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {
-		$myObj->name = $row['Name'];
+	if((date("Y//m/d") > {$row['StartDate']}) && date("Y/m/d") < {$row['EndDate']}) {//may need to remove curly brackets around $row
+		$myObj->name = $row['EventName'];
 		$myObj->description = $row['Description'];
 		$myObj->link = $row['Link'];
-		$myObj->type = $row['EventName'];
+		$myObj->type = $row['EventType'];
 		$myObj->latitude = $row['Latitude'];
 		$myObj->longitude = $row['Longitude'];
-		$myObj->radius = $row['Radius'];
+		$myObj->radius = $row['EventRadius'];
 		$myObj->color = $row['Color'];
 		$myObj->question = $row['Question'];
-		$myObj->answer1 = $row['Answer1'];
-		$myObj->answer2 = $row['Answer2'];
-		$myObj->answer3 = $row['Answer3'];
+		$myObj->answer1 = $row['AnswerOne'];
+		$myObj->answer2 = $row['AnswerTwo'];
+		$myObj->answer3 = $row['AnswerThree'];
 		array_push($data, $myObj);
 	}
 }
