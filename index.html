@@ -166,6 +166,7 @@
 						currdata["radius"] = Number(currdata["radius"]);
 						currdata["latitude"] = Number(currdata["latitude"]);
 						currdata["longitude"] = Number(currdata["longitude"]);
+						currdata["color"] = currdata["color"].toLowerCase();
 						let object = createInfoObjects(data[index]);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
