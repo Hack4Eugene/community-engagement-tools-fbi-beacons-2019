@@ -162,7 +162,13 @@
 				$.get("main.php", function(json){
 					let data = JSON.parse(json);
 					for(let index in data){
-						let object = createInfoObjects(data[index]);
+						let currdata = data[index];
+						currdata["radius"] = Number(currdata["radius"]);
+						currdata["latitude"] = Number(currdata["latitude"]);
+						currdata["longitude"] = Number(currdata["longitude"]);
+						currdata["color"] = currdata["color"].toLowerCase();
+						console.log(currdata);
+						let object = createInfoObjects(currdata);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
 						});
