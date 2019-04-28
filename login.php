@@ -8,7 +8,6 @@ $Database = "Eugene_Geo_App";
 $conn =  mysqli_connect($Server, $User, $Pass, $Database);
 
 //check connection, if it isnt connected show error
-
 if(!$conn){
        echo('Could not connect: ' . mysqli_error());
 }
