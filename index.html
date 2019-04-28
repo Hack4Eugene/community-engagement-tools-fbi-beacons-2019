@@ -161,7 +161,7 @@
 				
 				$.get("main.php", function(json){
 					let data = JSON.parse(json);
-					for(let index in data):
+					for(let index in data){
 						let object = createInfoObjects(data[index]);
 						google.maps.event.addListener(object["infoWindow"], "closeclick", function(){
 							hideInfoObjects(object);
@@ -170,6 +170,7 @@
 							showInfoObjects(object);
 						});
 						objectList.push(object);
+					}
 				});
 				
 				// $.getJSON("test.json", function(data){
